@@ -1,0 +1,32 @@
+.login-form {
+    color: white;
+    background-color: rgba(0, 0, 0, 0.378);
+    padding: 40px;
+    animation-name: fadeIn;
+    animation-duration: 3s;
+    border-radius: 10%;
+}
+
+.login-form-input {
+    display: block;
+    margin: 40px 0px;
+}
+
+.login-form-input select {
+    background-color: transparent;
+    border: none;
+    color: red;
+    font-size: calc(10px + 2vmin);
+}
+
+.login-form-input input {
+    background-color: transparent;
+    color: white;
+    border-width: 0 0 2px 0;
+    border-color: white;
+    border-style: dashed;
+}
+
+.option {
+    color: black;
+}
