@@ -2,9 +2,34 @@ import "./LoginPage.css"
 import { useNavigate } from 'react-router-dom';
 import { setPatientReport } from "../Global"
 import { Patient } from "../classes/Patient";
+import * as Server from "../server";
+import { ReasonForVisit } from "../classes/ReasonForVist";
+import { Department } from "../classes/Department";
+import { useEffect, useState } from "react";
 export default function LoginPage() {
     const navigate = useNavigate();
 
+
+
+    // var reasonForVisitList = [];
+    const [reasonForVisitList, setReasonForVisitList] = useState([]);
+    var reasonOptions;
+    useEffect(() => {
+        Server.getReasonList().then((reasonList) => {
+            setReasonForVisitList(reasonList);
+            // reasonForVisitList = reasonList;
+        })
+
+    },[])
+
+    //  const reasonForVisitList = [new ReasonForVisit("Test", new Department("test,test")), new ReasonForVisit("Test", new Department("test,test"))];
+
+
+    var reasonOptions = reasonForVisitList.map((reason) => {
+        return (
+            <option key={reason.name}value={reason.name} className="option">{reason.name}</option>
+        )
+    });
 
     function handleSubmit(event) {
         event.preventDefault();
@@ -38,9 +63,7 @@ export default function LoginPage() {
                 <div className="login-form-input">
                     <label>Reason For Vist: </label>
                     <select id="reason">
-                        <option value={"Broken Leg"} className="option">Broken Leg</option>
-                        <option value={"Cold"} className="option">Cold</option>
-                        <option value={"Heart Attack"} className="option">Heart Attack</option>
+                        {reasonOptions}
 
                     </select>
 

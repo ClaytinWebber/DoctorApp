@@ -1,7 +1,6 @@
-export class ReasonForVist {
-    constructor(name, location, department) {
+export class ReasonForVisit {
+    constructor(name, department) {
         this.name = name;
-        this.location = location;;
         this.department = department;
     }
 }
