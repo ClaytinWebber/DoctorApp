@@ -10,7 +10,7 @@ public class Doctor {
     private String firstname;
     private String lastname;
     @ManyToOne
-    @JoinColumn(name = "name")
+    @JoinColumn(name = "department")
     private Department department;
 
     public Integer getId() {
