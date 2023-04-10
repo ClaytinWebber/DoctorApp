@@ -69,4 +69,7 @@ public class Controller {
       PatientRepo.save(u);
 
     }
+
+    
+
 }
