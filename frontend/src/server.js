@@ -1,5 +1,6 @@
 import { ReasonForVisit } from "./classes/ReasonForVist";
 import { Department } from "./classes/Department";
+import { Doctor } from "./classes/Doctor";
 
 const SERVER_ADRESS = "http://localhost:8080";
 
@@ -45,12 +46,23 @@ export const sendPatient = async (patient) => {
         },
         body: data
     });
+
+
 }
 
 
-export const getAssignedDoctor = async (doctor) => {
+export const getAssignedDoctor = async (reason) => {
+    let doctor;
+    var response = await fetch(locate("doctor/Cold ")).then((res) => {
+        return res.json();
+    }).then((d) => {
 
-    fetch(locate("doctor/Cold "));
+        doctor = new Doctor(d.firstname, d.lastname, d.id, new Department(d.department.name, d.department.location));
+
+    });
+    console.log(doctor);
+
+    return doctor
 }
 
 function locate(mapping) {
