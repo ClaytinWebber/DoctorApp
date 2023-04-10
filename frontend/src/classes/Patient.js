@@ -13,6 +13,3 @@ export class Patient {
 
 }
 
-function getAssignedDoctor(injury) {
-    return "Dr. " + "Jerry";
-}

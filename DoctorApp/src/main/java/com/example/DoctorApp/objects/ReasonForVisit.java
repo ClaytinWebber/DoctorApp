@@ -26,4 +26,12 @@ public class ReasonForVisit {
     public void setDepartment(Department department) {
         this.department = department;
     }
+
+    @Override
+    public String toString() {
+        return "ReasonForVisit{" +
+                "name='" + name + '\'' +
+                ", department=" + department +
+                '}';
+    }
 }

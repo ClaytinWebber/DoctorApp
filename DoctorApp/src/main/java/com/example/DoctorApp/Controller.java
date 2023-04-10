@@ -1,7 +1,10 @@
 package com.example.DoctorApp;
 
+import com.example.DoctorApp.objects.Department;
+import com.example.DoctorApp.objects.Doctor;
 import com.example.DoctorApp.objects.Patient;
 import com.example.DoctorApp.objects.ReasonForVisit;
+import com.example.DoctorApp.repos.DoctorRepo;
 import com.example.DoctorApp.repos.PatientRepo;
 import com.example.DoctorApp.repos.ReasonForVistRepo;
 import org.slf4j.Logger;
@@ -13,10 +16,7 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.util.Date;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @RestController
 public class Controller {
@@ -25,7 +25,8 @@ public class Controller {
     Logger logger = LoggerFactory.getLogger(Controller.class);
     @Autowired
     private PatientRepo PatientRepo;
-
+    @Autowired
+    private DoctorRepo doctorRepo;
     @CrossOrigin
     @GetMapping(path = "/reasons")
     public @ResponseBody
@@ -34,6 +35,18 @@ public class Controller {
         return reasonForVisitRepo.findAll();
     }
 
+    @CrossOrigin
+    @GetMapping(path = "/doctor/{reason}")
+    public  String getDoctor(@PathVariable String reason){
+
+        ReasonForVisit reasonForVisit = reasonForVisitRepo.findById(reason).get();
+        Department reasonDepartment = reasonForVisit.getDepartment();
+        List<Doctor> docsInDepartment = doctorRepo.findByDepartment(reasonDepartment);
+
+
+
+        return returnedDoctor
+    }
     @CrossOrigin
 
     @PostMapping(path = "/patient")

@@ -48,6 +48,11 @@ export const sendPatient = async (patient) => {
 }
 
 
+export const getAssignedDoctor = async (doctor) => {
+
+    fetch(locate("doctor/Cold "));
+}
+
 function locate(mapping) {
 
     return SERVER_ADRESS + "/" + mapping;
