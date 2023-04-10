@@ -43,10 +43,20 @@ public class Controller {
         Department reasonDepartment = reasonForVisit.getDepartment();
         List<Doctor> docsInDepartment = doctorRepo.findByDepartment(reasonDepartment);
 
+        StringBuilder returnedDoctor = new StringBuilder();
 
+        for (Doctor doctor : docsInDepartment) {
+            returnedDoctor.append(doctor.getFirstname()).append(" ").append(doctor.getLastname()).append(", ");
+        }
 
-        return returnedDoctor
+        if (returnedDoctor.length() > 0)
+            returnedDoctor.setLength(returnedDoctor.length() - 2);
+        else
+            returnedDoctor.append("No doctors found in the department.");
+        
+        return "Doctors in the " + reasonDepartment.getName() + " department for " + reasonForVisit.getName() + ": " + returnedDoctor.toString();
     }
+
     @CrossOrigin
 
     @PostMapping(path = "/patient")
