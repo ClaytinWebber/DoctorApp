@@ -3,7 +3,7 @@ package com.example.DoctorApp.objects;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "ReasonForVist")
+@Table(name = "ReasonForVisit")
 public class ReasonForVisit {
     @Id
     private String name;

@@ -34,15 +34,16 @@ export const getReasonList = async () => {
     };
 
     request.send(JSON.stringify(body));*/
-const sendPatient = async (patient) => {
+
+
+export const sendPatient = async (patient) => {
+    var data = JSON.stringify(patient);
     var response = await fetch(locate("patient"), {
-        method: "POST", body: {
-            firstname: patient.firstname,
-            lastname: patient.lastname,
-            sex: patient.sex,
-            birthday: patient.birthday,
-            injury: patient.injury.name
-        }
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: data
     });
 }
 

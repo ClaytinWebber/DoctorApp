@@ -18,7 +18,7 @@ public class Patient {
     private String phone;
     private String email;
     @ManyToOne()
-    @JoinColumn(name = "name")
+    @JoinColumn(name = "reason")
     private ReasonForVisit reasonForVisit;
 
     public Integer getId() {
@@ -83,5 +83,19 @@ public class Patient {
 
     public void setReasonForVisit(ReasonForVisit reasonForVisit) {
         this.reasonForVisit = reasonForVisit;
+    }
+
+    @Override
+    public String toString() {
+        return "Patient{" +
+                "id=" + id +
+                ", firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", birthday=" + birthday +
+                ", sex='" + sex + '\'' +
+                ", phone='" + phone + '\'' +
+                ", email='" + email + '\'' +
+                ", reasonForVisit=" + reasonForVisit +
+                '}';
     }
 }

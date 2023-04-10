@@ -1,14 +1,18 @@
 export class Patient {
-    constructor(firstname, lastname, sex, birthday, injury) {
+    constructor(firstname, lastname, email, phone, sex, birthday, reasonForVisit) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.sex = sex;
         this.birthday = birthday;
-        this.injury = injury;
+        this.email = email;
+        this.phone = phone;
+        this.reasonForVisit = reasonForVisit;
 
     }
 
 
-} function getAssignedDoctor(injury) {
+}
+
+function getAssignedDoctor(injury) {
     return "Dr. " + "Jerry";
 }

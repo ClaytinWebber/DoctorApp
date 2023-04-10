@@ -10,11 +10,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Date;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Optional;
 
 @RestController
 public class Controller {
     @Autowired
-    private ReasonForVistRepo userRepository;
+    private ReasonForVistRepo reasonForVisitRepo;
     Logger logger = LoggerFactory.getLogger(Controller.class);
     @Autowired
     private PatientRepo PatientRepo;
@@ -24,24 +31,42 @@ public class Controller {
     public @ResponseBody
     Iterable<ReasonForVisit> getAllReasonsForVisit() {
         logger.info("Sending Reasons For Visit");
-        return userRepository.findAll();
+        return reasonForVisitRepo.findAll();
     }
 
+    @CrossOrigin
 
     @PostMapping(path = "/patient")
-    public void addNewUser(@RequestBody Patient request) throws SQLException{
+    public void addNewUser(@RequestBody Map<String,Object> request) throws SQLException{
+        logger.info(request.toString());
+
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
+
+
+        String firstname = request.get("firstname").toString();
+        String lastname = request.get("lastname").toString();
+        String sex = request.get("sex").toString();
+        String email = request.get("email").toString();
+        String phone = request.get("phone").toString();
+        Date birthday = null;
+        try {
+            birthday = formatter.parse(request.get("birthday").toString());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         Patient u = new Patient();
 
-        u.setFirstname(request.getFirstname());
-        u.setLastname(request.getLastname());
-        u.setBirthday(request.getBirthday());
-        u.setEmail(request.getEmail());
-        u.setId(request.getId());
-        u.setPhone(request.getPhone());
-        u.setSex(request.getSex());
-        u.setReasonForVisit(request.getReasonForVisit());
+        u.setFirstname(firstname);
+        u.setLastname(lastname);
+        u.setBirthday(birthday);
+        u.setEmail(email);
+        u.setPhone(phone);
+        u.setSex(sex);
 
-        PatientRepo.save(u);
+        Optional<ReasonForVisit> a =reasonForVisitRepo.findById(request.get("reasonForVisit").toString());
+        u.setReasonForVisit(a.get());
+      //  System.out.println(u.toString());
+      PatientRepo.save(u);
 
     }
 }
