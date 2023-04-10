@@ -8,9 +8,6 @@ import { Department } from "../classes/Department";
 import { useEffect, useState } from "react";
 export default function LoginPage() {
     const navigate = useNavigate();
-
-
-
     // var reasonForVisitList = [];
     const [reasonForVisitList, setReasonForVisitList] = useState([]);
     var reasonOptions;

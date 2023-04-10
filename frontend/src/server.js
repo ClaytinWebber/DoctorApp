@@ -17,6 +17,36 @@ export const getReasonList = async () => {
     return reasonForVisitList;
 }
 
+/*
+
+    var request = new XMLHttpRequest();
+
+    request.open('POST', locate("user"));
+
+    request.setRequestHeader('Content-Type', 'application/json');
+
+    var body = {
+        'username': username,
+        'first_name': firstName,
+        'last_name': lastName,
+        'password': password
+
+    };
+
+    request.send(JSON.stringify(body));*/
+const sendPatient = async (patient) => {
+    var response = await fetch(locate("patient"), {
+        method: "POST", body: {
+            firstname: patient.firstname,
+            lastname: patient.lastname,
+            sex: patient.sex,
+            birthday: patient.birthday,
+            injury: patient.injury.name
+        }
+    });
+}
+
+
 function locate(mapping) {
 
     return SERVER_ADRESS + "/" + mapping;
