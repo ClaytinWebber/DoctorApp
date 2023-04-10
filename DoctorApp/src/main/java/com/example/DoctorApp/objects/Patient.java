@@ -19,7 +19,7 @@ public class Patient {
     private String email;
     @ManyToOne()
     @JoinColumn(name = "name")
-    private ReasonForVisit injury;
+    private ReasonForVisit reasonForVisit;
 
     public Integer getId() {
         return id;
@@ -77,11 +77,11 @@ public class Patient {
         this.email = email;
     }
 
-    public ReasonForVisit getInjury() {
-        return injury;
+    public ReasonForVisit getReasonForVisit() {
+        return reasonForVisit;
     }
 
-    public void setInjury(ReasonForVisit injury) {
-        this.injury = injury;
+    public void setReasonForVisit(ReasonForVisit reasonForVisit) {
+        this.reasonForVisit = reasonForVisit;
     }
 }
