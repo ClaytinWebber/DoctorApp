@@ -37,16 +37,24 @@ public class Controller {
 
     @CrossOrigin
     @GetMapping(path = "/doctor/{reason}")
-    public  String getDoctor(@PathVariable String reason){
+    public Doctor getDoctor(@PathVariable String reason){
 
         ReasonForVisit reasonForVisit = reasonForVisitRepo.findById(reason).get();
         Department reasonDepartment = reasonForVisit.getDepartment();
         List<Doctor> docsInDepartment = doctorRepo.findByDepartment(reasonDepartment);
 
+        if (docsInDepartment.isEmpty()) {
+            throw new RuntimeException("No doctors found in department: " + reasonDepartment.getName());
+        }
+        
+        Random rand = new Random();
+        int index = rand.nextInt(docsInDepartment.size());
+        Doctor randomDoctor = docsInDepartment.get(index);
 
+        return randomDoctor;
 
-        return returnedDoctor
     }
+
     @CrossOrigin
 
     @PostMapping(path = "/patient")
