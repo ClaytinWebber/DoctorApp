@@ -4,7 +4,11 @@ import { getDoctor } from "../Global";
 export default function DoctorPage({ route }) {
     var doctor = getDoctor();
 
-    console.log(doctor);
-
-    return (<div></div>);
+    return (console.log(doctor));
 }
+
+function printDoctor(doctor){
+    document.write(doctor);
+}
+
+printDoctor();
