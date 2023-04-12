@@ -1,0 +1,16 @@
+.displaySection {
+    background-color: rgba(0, 0, 0, 0.4);
+
+    width: 80%;
+    height: 80vh;
+    border-radius: 10%;
+    text-align: center;
+}
+
+.home-button {
+    color: white;
+    border-width: 0;
+    width: 60%;
+    font-size: 20px;
+    background-color: transparent;
+}

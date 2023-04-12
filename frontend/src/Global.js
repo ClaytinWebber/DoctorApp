@@ -10,7 +10,14 @@ export function setPatientReport(aPatientReport) {
 export function getPatientReport() {
     return patientReport;
 }
+var doctor;
 
+export function setADoctor(aDoctor) {
+    doctor = aDoctor;
+}
+export function getDoctor() {
+    return doctor;
+}
 export function serializeDate(date) {
     //2023-04-16
 

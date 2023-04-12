@@ -61,7 +61,9 @@ export default function LoginPage() {
                 </div>      <div className="login-form-input">
 
                     <label>Phone: </label>
-                    <input id="phone"></input>
+                    <input type={
+                        "tel"
+                    }  id="phone"></input>
                 </div>
                 <div className="login-form-input">
 
