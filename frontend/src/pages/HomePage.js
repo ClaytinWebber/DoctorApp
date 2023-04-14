@@ -10,8 +10,8 @@ import { useNavigate } from "react-router-dom";
 
 export default function HomePage() {
     const navigate = useNavigate();
-    //    var patientReport = getPatientReport();
-    var patientReport = new Patient("Julien", "Goolsby", "juliengoolsby@gmail.com", "816-289-0122", "male", "04/16/2020", new ReasonForVisit("Cold ", "Test"));
+    var patientReport = getPatientReport();
+    //var patientReport = new Patient("Julien", "Goolsby", "juliengoolsby@gmail.com", "816-289-0122", "male", "04/16/2020", new ReasonForVisit("Cold ", "Test"));
     const [doctor, setDoctor] = useState(new Doctor("", "", "", new Department("", "")));
 
     useEffect(() => {

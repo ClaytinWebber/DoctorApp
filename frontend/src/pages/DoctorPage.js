@@ -1,14 +1,19 @@
 import { useParams } from "react-router-dom";
-import { getDoctor } from "../Global";
+import { getDoctor, getPatientReport } from "../Global";
+import { Department } from "../classes/Department";
 
 export default function DoctorPage({ route }) {
     var doctor = getDoctor();
 
-    return (console.log(doctor));
-}
+    console.log(doctor)
 
-function printDoctor(doctor){
-    document.write(doctor);
+    return (<div>
+        {"Name:" + doctor.firstname +" "+ doctor.lastname + " " }
+        <br></br>
+        { "Department:" + doctor.department.name}
+        <br></br>
+        {}
+        <br></br>
+        {}
+        </div>);
 }
-
-printDoctor();
