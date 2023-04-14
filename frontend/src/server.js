@@ -76,9 +76,11 @@ export const sendPatient = async (patient) => {
 }
 
 
-export const getAssignedDoctor = async (reason) => {
+export const getAssignedDoctor = async (p) => {
+
+    console.log(p);
     let doctor;
-    var response = await fetch(locate("doctor/Cold ")).then((res) => {
+    var response = await fetch(locate("doctor/"+p.reasonForVisit)).then((res) => {
         return res.json();
     }).then((d) => {
 
