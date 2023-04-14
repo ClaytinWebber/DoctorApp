@@ -1,5 +1,5 @@
-import { getPatientReport,setADoctor } from "../Global";
-import { getAssignedDoctor } from "../server";
+import { getPatientReport, setADoctor } from "../Global";
+import { getAssignedDoctor, getAllPreviousVisitList } from "../server";
 import { useEffect, useState } from "react";
 import { Doctor } from "../classes/Doctor";
 import { Patient } from "../classes/Patient";
@@ -10,14 +10,13 @@ import { useNavigate } from "react-router-dom";
 
 export default function HomePage() {
     const navigate = useNavigate();
-    //    var patientReport = getPatientReport();
-    var patientReport = new Patient("Julien", "Goolsby", "juliengoolsby@gmail.com", "816-289-0122", "male", "04/16/2020", new ReasonForVisit("Cold ", "Test"));
+    var patientReport = getPatientReport();
+    //var patientReport = new Patient("Julien", "Goolsby", "juliengoolsby@gmail.com", "816-289-0122", "male", "04/16/2020", new ReasonForVisit("Cold ", "Test"));
     const [doctor, setDoctor] = useState(new Doctor("", "", "", new Department("", "")));
 
     useEffect(() => {
-
+        getAllPreviousVisitList(patientReport);
         getAssignedDoctor(patientReport).then((assignedDoctor) => {
-            console.log(assignedDoctor);
             setDoctor(assignedDoctor);
         })
 
@@ -32,7 +31,10 @@ export default function HomePage() {
 
         <button onClick={() => {
             setADoctor(doctor);
-            navigate("/info/doctor",{});
+            navigate("/info/doctor", {});
         }} className="home-button">About Dr. {doctor.lastname}</button>
+        <button onClick={() => {
+            navigate("/info/visits", {});
+        }} className="home-button">View your previous visits</button>
     </div>
 }

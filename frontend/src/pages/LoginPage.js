@@ -63,7 +63,7 @@ export default function LoginPage() {
                     <label>Phone: </label>
                     <input type={
                         "tel"
-                    }  id="phone"></input>
+                    } id="phone"></input>
                 </div>
                 <div className="login-form-input">
 

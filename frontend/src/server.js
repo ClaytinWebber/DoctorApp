@@ -1,6 +1,7 @@
 import { ReasonForVisit } from "./classes/ReasonForVist";
 import { Department } from "./classes/Department";
 import { Doctor } from "./classes/Doctor";
+import { Patient } from "./classes/Patient";
 
 const SERVER_ADRESS = "http://localhost:8080";
 
@@ -18,6 +19,30 @@ export const getReasonList = async () => {
     return reasonForVisitList;
 }
 
+
+export const getAllPreviousVisitList = async (patient) => {
+    var patientVisitList = [];
+    const firstname = patient.firstname;
+    const lastname = patient.lastname;
+
+    await fetch(locate("patient"), {
+        headers: {
+            "auth": firstname + ":" + lastname
+        }
+    }).then((res) => {
+
+        return res.json();
+    }).then(patients => {
+        console.log(patients);
+        patients.forEach(
+            p => {
+                patientVisitList.push(new Patient(p.firstname, p.lastname, p.email, p.phone, p.sex, p.birthday, new ReasonForVisit(p.reasonForVisit.name, p.reasonForVisit.department)));
+            }
+        )
+    });
+
+    return patientVisitList;
+}
 /*
 
     var request = new XMLHttpRequest();

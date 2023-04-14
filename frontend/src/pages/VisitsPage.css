@@ -1,0 +1,8 @@
+.visitItem {
+    color: white;
+}
+
+.visitTable {
+    background-color: rgba(255, 4, 10, 0.3);
+    padding: 40px;
+}

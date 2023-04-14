@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.print.Doc;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -24,7 +25,7 @@ public class Controller {
     private ReasonForVistRepo reasonForVisitRepo;
     Logger logger = LoggerFactory.getLogger(Controller.class);
     @Autowired
-    private PatientRepo PatientRepo;
+    private PatientRepo patientRepo;
     @Autowired
     private DoctorRepo doctorRepo;
     @CrossOrigin
@@ -35,6 +36,16 @@ public class Controller {
         return reasonForVisitRepo.findAll();
     }
 
+
+    @CrossOrigin
+    @GetMapping("/patient")
+    public List<Patient> getPrevPatientVisits(@RequestHeader String auth){
+        logger.info("Finding previous visits from " + auth );
+
+            String[] firstnameAndLastname = auth.split(":");
+
+        return patientRepo.findByFirstnameAndLastname(firstnameAndLastname[0],firstnameAndLastname[1]);
+    }
     @CrossOrigin
     @GetMapping(path = "/doctor/{reason}")
     public Doctor getDoctor(@PathVariable String reason){
@@ -56,7 +67,6 @@ public class Controller {
     }
 
     @CrossOrigin
-
     @PostMapping(path = "/patient")
     public void addNewUser(@RequestBody Map<String,Object> request) throws SQLException{
         logger.info(request.toString());
@@ -87,7 +97,7 @@ public class Controller {
         Optional<ReasonForVisit> a =reasonForVisitRepo.findById(request.get("reasonForVisit").toString());
         u.setReasonForVisit(a.get());
       //  System.out.println(u.toString());
-      PatientRepo.save(u);
+      patientRepo.save(u);
 
     }
 
