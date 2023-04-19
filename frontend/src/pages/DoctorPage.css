@@ -2,7 +2,7 @@
     align-content: left;
     padding: 40px;
     background-color: rgba(30, 30, 30, 0.5);
-        width: 400px;
+        min-width: 400px;
         height: 500px;
         border-radius: 20%;
 }

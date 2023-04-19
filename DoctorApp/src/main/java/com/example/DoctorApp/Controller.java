@@ -44,8 +44,15 @@ public class Controller {
 
             String[] firstnameAndLastname = auth.split(":");
 
-        return patientRepo.findByFirstnameAndLastname(firstnameAndLastname[0],firstnameAndLastname[1]);
-    }
+            try {
+                List<Patient> patients = patientRepo.findByFirstnameAndLastname(firstnameAndLastname[0], firstnameAndLastname[1]);
+                return patients;
+
+            }catch (Exception e) {
+        logger.error("firstname or lastname is blank");
+            }
+return null;
+     }
     @CrossOrigin
     @GetMapping(path = "/doctor/{reason}")
     public Doctor getDoctor(@PathVariable String reason){
