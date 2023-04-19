@@ -11,7 +11,7 @@ export default function DoctorPage({ route }) {
     return (<div className="doctorPage">
 
         <img src={doctorImg}></img>
-        <div style={{ }}>
+        <div style={{textAlign:"right" }}>
             {"Name: " + doctor.firstname + " " + doctor.lastname + " "}
             <br></br>
             <br></br>
@@ -27,6 +27,5 @@ export default function DoctorPage({ route }) {
             {"Phone number: " + doctor.phoneNumber}
         </div>
 
-        <button>Back</button>
     </div>);
 }
