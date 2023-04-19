@@ -78,13 +78,12 @@ export const sendPatient = async (patient) => {
 
 export const getAssignedDoctor = async (p) => {
 
-    console.log(p);
     let doctor;
-    var response = await fetch(locate("doctor/"+p.reasonForVisit)).then((res) => {
+    var response = await fetch(locate("doctor/" + p.reasonForVisit)).then((res) => {
         return res.json();
     }).then((d) => {
-
-        doctor = new Doctor(d.firstname, d.lastname, d.id, new Department(d.department.name, d.department.location));
+        console.log(d);
+        doctor = new Doctor(d.firstname, d.lastname, d.email, d.phoneNumber, d.id, new Department(d.department.name, d.department.location));
 
     });
     console.log(doctor);

@@ -12,7 +12,7 @@ export default function HomePage() {
     const navigate = useNavigate();
     var patientReport = getPatientReport();
     //var patientReport = new Patient("Julien", "Goolsby", "juliengoolsby@gmail.com", "816-289-0122", "male", "04/16/2020", new ReasonForVisit("Cold ", "Test"));
-    const [doctor, setDoctor] = useState(new Doctor("", "", "", new Department("", "")));
+    const [doctor, setDoctor] = useState(new Doctor("", "","", "",0 ,new Department("", "")));
 
     useEffect(() => {
         getAllPreviousVisitList(patientReport);

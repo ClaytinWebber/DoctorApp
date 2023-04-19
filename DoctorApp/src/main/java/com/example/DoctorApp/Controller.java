@@ -54,6 +54,7 @@ public class Controller {
         Department reasonDepartment = reasonForVisit.getDepartment();
         List<Doctor> docsInDepartment = doctorRepo.findByDepartment(reasonDepartment);
 
+
         if (docsInDepartment.isEmpty()) {
             throw new RuntimeException("No doctors found in department: " + reasonDepartment.getName());
         }

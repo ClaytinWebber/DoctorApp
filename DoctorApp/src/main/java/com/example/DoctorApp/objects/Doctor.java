@@ -9,6 +9,8 @@ public class Doctor {
     private Integer id;
     private String firstname;
     private String lastname;
+    private String email;
+    private String phoneNumber;
     @ManyToOne
     @JoinColumn(name = "department")
     private Department department;
@@ -43,6 +45,22 @@ public class Doctor {
 
     public void setDepartment(Department department) {
         this.department = department;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     @Override
